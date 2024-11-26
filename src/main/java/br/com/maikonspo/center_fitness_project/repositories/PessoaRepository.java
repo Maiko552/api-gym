@@ -13,7 +13,8 @@ import java.util.UUID;
 public interface PessoaRepository extends JpaRepository<PessoaModel, UUID> {
 
     // Busca pelo nome ou sobrenome com LIKE
-    @Query("SELECT p FROM PessoaModel p WHERE p.nome LIKE %:nome% OR p.sobrenome LIKE %:nome%")
-    List<PessoaModel> findByNameOrLastNameContaining(@Param("nome") String name);
+    @Query("SELECT p FROM PessoaModel p WHERE LOWER(p.nome) LIKE LOWER(CONCAT('%', :nome, '%')) OR LOWER(p.sobrenome) LIKE LOWER(CONCAT('%', :nome, '%'))")
+    List<PessoaModel> findByNameOrLastNameContaining(@Param("nome") String nome);
+
 
 }

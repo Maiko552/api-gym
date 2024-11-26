@@ -24,19 +24,18 @@ public class PessoaModel {
 
     @NotBlank
     @Column(length = 255, nullable = false, name = "nome")
-    private String name;
+    private String nome;
 
     @NotBlank
     @Column(name = "sobrenome", length = 255, nullable = false)
-    private String lastName;
+    private String sobrenome;
 
     private String email;
 
-    @Column(name = "ativo")
+    @Column(name = "is_present")
     private boolean isPresent = true;
 
     @Column(name = "foto_url")
     private String fotoURL;
-
 
 }

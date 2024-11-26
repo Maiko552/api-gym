@@ -4,16 +4,17 @@ import br.com.maikonspo.center_fitness_project.model.PessoaModel;
 import br.com.maikonspo.center_fitness_project.repositories.PessoaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class PessoaService {
 
     @Autowired
-    private static PessoaRepository repository;
+    private  PessoaRepository repository;
 
     @Transactional
     public void markAsAbsentByName(String nome) {

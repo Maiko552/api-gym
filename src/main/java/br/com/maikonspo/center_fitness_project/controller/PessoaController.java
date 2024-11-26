@@ -40,8 +40,9 @@ public class PessoaController {
 
         return ResponseEntity.ok(pessoasLista);
     }
-    @GetMapping("/searchnome")
-    public ResponseEntity<?> buscarPessoa(@RequestParam String nome) {
+    @GetMapping("/searchnome/{nome}")
+    public ResponseEntity<?> buscarPessoa(@PathVariable String nome) {
+        System.out.println("Buscando por: " + nome);
         List<PessoaModel> pessoas = repository.findByNameOrLastNameContaining(nome);
 
         if (pessoas.isEmpty()) {
@@ -53,19 +54,20 @@ public class PessoaController {
     }
 
 
+
     @PostMapping("/cadastro")
     public ResponseEntity<Object> postPessoa(@RequestBody PessoaModel pessoa) {
         PessoaModel pessoSalva = repository.save(pessoa);
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoSalva);
     }
 
-    @PostMapping("/desativar")
+    @PatchMapping("/desativar")
     public ResponseEntity<String> desativarPessoa(@RequestParam String nome) {
         try {
             pessoaService.markAsAbsentByName(nome);
-            return ResponseEntity.ok("Pessoa(s) desativada(s) com sucesso.");
+            return ResponseEntity.ok("Pessoa desativada com sucesso.");
         } catch (RuntimeException e) {
-            return ResponseEntity.status(404).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
 
     }
