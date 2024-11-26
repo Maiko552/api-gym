@@ -32,7 +32,7 @@ public class PessoaModel {
 
     private String email;
 
-    @Column(nullable = false, name = "ativo")
+    @Column(name = "ativo")
     private boolean isPresent = true;
 
     @Column(name = "foto_url")
