@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CenterFitnessProjectApplication {
 
+    //Maikon Nascimento Sposito
 	public static void main(String[] args) {
 		SpringApplication.run(CenterFitnessProjectApplication.class, args);
 	}
