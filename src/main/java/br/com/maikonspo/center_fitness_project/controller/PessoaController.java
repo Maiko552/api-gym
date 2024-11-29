@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 import java.util.UUID;
@@ -53,6 +54,17 @@ public class PessoaController {
         return ResponseEntity.ok(pessoas);
     }
 
+    @GetMapping("/pago")
+    public ResponseEntity<List<String>> buscarPessoasComPagamentoVencido() {
+        List<String> nomesVencidos = pessoaService.monthValidation();
+
+        if (nomesVencidos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonList("Nenhuma pessoa com pagamento vencido."));
+        }
+        System.out.println("Validade ultrapassada.");
+        return ResponseEntity.ok(nomesVencidos);
+    }
 
 
     @PostMapping("/cadastro")

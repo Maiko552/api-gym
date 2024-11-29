@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Entity
@@ -16,6 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PessoaModel {
+
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +39,18 @@ public class PessoaModel {
     @Column(name = "is_present")
     private boolean isPresent = true;
 
+    @Column(name = "pago")
+    private LocalDate pago;
+
     @Column(name = "foto_url")
     private String fotoURL;
 
+
+    public String getPago() {
+        if (pago != null){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return pago.format(formatter);
+        }
+        return "";
+    }
 }

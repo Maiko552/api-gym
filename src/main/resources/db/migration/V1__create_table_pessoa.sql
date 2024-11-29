@@ -4,5 +4,6 @@ CREATE TABLE pessoas (
     sobrenome VARCHAR(255) NOT NULL,
     email VARCHAR(255),
     is_present BOOLEAN DEFAULT TRUE,
-    foto_url VARCHAR(255)
+    foto_url VARCHAR(255),
+    pago DATE
 );
